@@ -19,7 +19,7 @@ jobs:
     - name: Build and tag image
       id: build-image
       run: |
-        docker build -t my-docker-image .
+        docker build -t demorepo .
         docker tag demorepo:latest public.ecr.aws/r3p5k7f4/demorepo:latest    
     - name: Push image to Amazon ECR
       run: |
