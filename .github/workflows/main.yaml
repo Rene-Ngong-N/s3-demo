@@ -20,7 +20,7 @@ jobs:
       id: build-image
       run: |
         docker build -t demorepo1 .
-        docker tag demorepo1:latest demorepo1.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest   
+        docker tag demorepo1:latest ***.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest   
     - name: Push image to Amazon ECR
       run: |
         docker push demorepo1.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest
