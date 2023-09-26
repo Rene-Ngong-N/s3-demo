@@ -23,7 +23,7 @@ jobs:
         docker tag demorepo:latest public.ecr.aws/r3p5k7f4/demorepo:latest    
     - name: Push image to Amazon ECR
       run: |
-        docker push public.ecr.aws/r3p5k7f4/demorepo:latest
+        docker push ${{ steps.login-ecr.outputs.registry }}/demorepo:latest
 
 
 
