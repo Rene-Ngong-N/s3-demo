@@ -22,6 +22,7 @@ jobs:
         ECR_REPOSITORY: demorepo
         IMAGE_TAG: sample_image
       run: |
+        set -x  # Enable debug mode
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
