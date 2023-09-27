@@ -16,15 +16,37 @@ jobs:
     - name: login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
-    - name: Build and tag image
+    - name: Build 
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: demorepo
         IMAGE_TAG: latest
       run: |
-         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+         docker build -t my-docker-image .
+         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 224545624713.dkr.ecr.us-east-1.amazonaws.com
+         docker tag my-docker-image:latest 224545624713.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest
+         docker push 224545624713.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest
+
+
+
+
+# - run: |
+#     # Set your AWS credentials and region
+#     export AWS_ACCESS_KEY_ID=<your-access-key-id>
+#     export AWS_SECRET_ACCESS_KEY=<your-secret-access-key>
+#     export AWS_DEFAULT_REGION=<your-region>
+
+#     # Build the Docker image
+#     docker build -t my-docker-image .
+
+#     # Authenticate Docker to ECR
+#     aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<your-region>.amazonaws.com
+
+#     # Tag the Docker image
+#     docker tag my-docker-image:latest <account-id>.dkr.ecr.<your-region>.amazonaws.com/my-repository:latest
+
+#     # Push the Docker image to ECR
+#     docker push <account-id>.dkr.ecr.<your-region>.amazonaws.com/my-repository:latest
 
 
 # name: Upload website
