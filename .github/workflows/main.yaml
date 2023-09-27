@@ -23,7 +23,7 @@ jobs:
         docker tag demorepo1:latest public.ecr.aws/r3p5k7f4/demorepo1:latest
     - name: Push image to Amazon ECR
       run: |
-         docker push public.ecr.aws/r3p5k7f4/demorepo:latest
+         docker push demorepo1.ecr.aws/r3p5k7f4/demorepo:latest
 
 
 # name: Upload website
