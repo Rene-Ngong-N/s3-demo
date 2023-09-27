@@ -20,10 +20,10 @@ jobs:
       id: build-image
       run: |
         docker build -t demorepo1 .
-        docker tag demorepo1:latest ${{ steps.login-ecr.outputs.registry }}/demorepo:latest
+        docker tag demorepo1:latest public.ecr.aws/r3p5k7f4/demorepo1:latest
     - name: Push image to Amazon ECR
       run: |
-         docker push ${{ steps.login-ecr.outputs.registry }}/demorepo:latest
+         docker push public.ecr.aws/r3p5k7f4/demorepo:latest
 
 
 # name: Upload website
@@ -31,7 +31,7 @@ jobs:
 # on:
 #   push:
 #     branches:     docker tag demorepo1:latest demorepo1.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest
-                    docker push demorepo1.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest
+#                    docker push demorepo1.dkr.ecr.us-east-1.amazonaws.com/demorepo:latest
 
 #       - main
 # jobs:
